@@ -1,11 +1,27 @@
-//one over the other(differentr methods,call back functions)
-const { readFileSync, writeFileSync } = require('fs');
+//asynchronous js
 
-const first = readFileSync('./content/first.txt', 'utf8');
-const second = readFileSync('./content/second.txt', 'utf8');
+const { readFile, writeFileSync } = require('fs'); 
 
-console.log(first, second);
+readFile('./content/first.txt', 'utf8', (err, result) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
 
-writeFileSync('./content/result-sync.txt',
- `here is the result: ${first}, ${second}`,{flag:'a'});// here we created aanother text file
+    console.log(result); // Print the contents of the first file
 
+    const first = result;
+
+    readFile('./content/second.txt', 'utf8', (err, result) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        console.log(result); // Print the contents of the second file
+
+        const second = result;
+
+        writeFileSync('./content/result-sync.txt', `here is the result: ${first}, ${second},\n`, { flag: 'a' });
+    });
+});
