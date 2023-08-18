@@ -1,21 +1,36 @@
-const amount=12
-if(amount<12){
-    console.log("number is small ,better luck next time")
-}
-else if(amount==12){
-    console.log("yes its 12 ")
-}
-else{
-    console.log("its bigger number")
-}
-console.log("my first program")
+const os =require('os')//built in function
+const { uptime } = require('process')
 
-const names=require('./utils.js')
-const Greet=require('./name.js')
-const data=require('./AlternativeFlavor.js')
-const add=require('./MindGraned.js')
-console.log(names)
-Greet(names.john);
-console.log(data)
-require('./MindGraned.js')
-//thats it
+
+//info about current user
+const user=os.userInfo()
+console.log(user)
+//method return the system uptime in seconds
+console.log(os.uptime())
+
+//more methods
+const currentos={
+    name:os.type(),
+    release:os.release(),
+    totalMem:os.totalmem(),
+    freeMem:os.freemem(),
+}
+console.log(currentos);
+
+//path module
+const path = require('path');
+
+const filepath = path.join('//content', 'subfolder', 'text.txt');
+console.log(`the file path is: ${filepath}`);
+console.log(`the path separation is ${path.sep}`);
+//only last name
+const base=path.basename(filepath)
+console.log(base)
+
+
+
+
+
+
+    
+
